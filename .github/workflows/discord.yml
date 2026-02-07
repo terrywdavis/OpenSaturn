@@ -7,15 +7,19 @@ on:
     types: [published]
 
 jobs:
-  notify-discord:
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - name: Notify Discord
-        uses: Ilshidur/action-discord@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Send Discord message
+        uses: stegzilla/discord-notify@v4
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "GitHub Update"
           message: |
-            📌 **Repository:** ${{ github.repository }}
-            📝 **Actor:** ${{ github.actor }}
-            🔗 **Commit:** ${{ github.sha }}
-            💬 **Message:** ${{ github.event.head_commit.message }}
+            📌 Repo: ${{ github.repository }}
+            🧑‍💻 By: ${{ github.actor }}
+            🆕 Event: ${{ github.event_name }}
+            🔗 https://github.com/${{ github.repository }}
