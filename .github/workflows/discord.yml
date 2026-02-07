@@ -1,0 +1,21 @@
+name: Discord Notifications
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  notify-discord:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Discord
+        uses: Ilshidur/action-discord@v2
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          message: |
+            📌 **Repository:** ${{ github.repository }}
+            📝 **Actor:** ${{ github.actor }}
+            🔗 **Commit:** ${{ github.sha }}
+            💬 **Message:** ${{ github.event.head_commit.message }}
