@@ -16,6 +16,13 @@
 
 # Debugger Files
 *.pdb
+*.sln
+*.slnx
+*.vcxproj
+*.user
+*.filters
+*.decoy
+*.enc
 
 # Compiled Dynamic libraries
 *.so
@@ -26,11 +33,17 @@
 *.mod
 *.smod
 
+# Other
+*.bat
+*.py
+*.lua
+
 # Compiled Static libraries
 *.lai
 *.la
 *.a
 *.lib
+*.exp
 
 # Executables
 *.exe
@@ -39,3 +52,14 @@
 
 # debug information files
 *.dwo
+
+# =========================
+# Added (per request)
+# =========================
+
+# Visual Studio
+.vs/
+x64/
+
+# Text files
+*.txt
