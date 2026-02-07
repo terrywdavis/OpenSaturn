@@ -1,16 +1,25 @@
-name: Notify Discord on Commits
+name: Discord Commit Updates
 
 on:
   push:
     branches: [main]
 
 jobs:
-  discord_notify:
+  notify:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Send commit info to Discord
-        uses: Sniddl/discord‑commits@v1.6
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Notify Discord
+        uses: tsickert/discord-webhook@v7.0.0
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          template: "avatar‑with‑link"
-          include‑extras: true
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
+          embed-title: "New commit pushed!"
+          embed-description: |
+            **Repo:** ${{ github.repository }}
+            **Author:** ${{ github.actor }}
+            **Message:** ${{ github.event.head_commit.message }}
+          embed-url: ${{ github.event.head_commit.url }}
+          embed-color: "3066993"
