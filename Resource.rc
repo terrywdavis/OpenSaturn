@@ -1,0 +1,4 @@
+#include "Resource.h"
+
+INIT_SCRIPT    RCDATA "Init.lua.decoy"
+INIT_SCRIPT_ENC RCDATA "Init.lua.enc"
