@@ -844,6 +844,7 @@ namespace MainFunctions {
         g_env["consoleclear"] = [](std::string, json, DWORD) -> std::string {
             ConsoleClear();
             return "SUCCESS";
+			
         };
         g_env["rconsoleclear"] = g_env["consoleclear"];
         g_env["consoleprint"] = [](std::string dta, json, DWORD) -> std::string {
